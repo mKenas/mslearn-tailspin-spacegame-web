@@ -3,7 +3,6 @@ trigger:
 
 variables:
   buildConfiguration: 'Release'
-
 stages:
 - stage: 'Build'
   displayName: 'Build the web application'
@@ -34,7 +33,7 @@ stages:
       displayName: 'Compile Sass assets'
 
     - task: gulp@1
-      displayName: 'Run gulp tasks'
+      displayName: 'Run gulp tasks for building and optimizing the frontend '
 
     - script: 'echo "$(Build.DefinitionName), $(Build.BuildId), $(Build.BuildNumber)" > buildinfo.txt'
       displayName: 'Write build info'
@@ -74,7 +73,7 @@ stages:
       vmImage: 'ubuntu-20.04'
     environment: dev
     variables:
-    - group: Release
+      WebAppName: 'AzureDevOpsDemo'
     strategy:
       runOnce:
         deploy:
